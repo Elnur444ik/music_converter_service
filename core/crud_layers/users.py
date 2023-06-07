@@ -13,10 +13,11 @@ async def get_user_by_username(db: AsyncSession, username: str) -> Union[UUID4, 
     return result.scalar_one_or_none()
 
 
-# async def get_user_by_id(db: AsyncSession, user_id: UUID4) -> Union[UUID4, None]:
-#     query = select(User).where(User.id == user_id)
-#     result = await db.execute(query)
-#     return result.scalar_one_or_none()
+async def get_user_by_id(db: AsyncSession, user_id: UUID4) -> Union[UUID4, None]:
+    query = select(User).where(User.id == user_id)
+    result = await db.execute(query)
+    return result.scalar_one_or_none()
+
 
 async def check_user_token(db: AsyncSession, user_id: UUID4, access_token: UUID4) -> Union[UUID4, None]:
     query = select(User).filter_by(User.id == user_id, User.token == access_token)
