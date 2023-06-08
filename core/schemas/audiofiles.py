@@ -1,4 +1,6 @@
-from pydantic import BaseModel, UUID4, FilePath, FileUrl
+from typing import Optional
+
+from pydantic import BaseModel, UUID4, FilePath, FileUrl, HttpUrl
 
 
 class AddAudio(BaseModel):
@@ -18,4 +20,11 @@ class ReturnAudio(TunedModel):
 
 
 class ReturnURL(TunedModel):
-    audiofile_url: FileUrl
+    audiofile_url: HttpUrl
+
+
+class ReturnAudioRow(TunedModel):
+    user_id: UUID4
+    access_token: UUID4
+    audiofile_path: FilePath
+    title: Optional[str] = 'Unnamed'

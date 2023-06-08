@@ -4,7 +4,7 @@ from pydantic import FilePath
 from pydub import AudioSegment
 
 
-def convert_audio(audiopath: str) -> str:
+def convert_audio(audiopath: FilePath) -> str:
     audio = AudioSegment.from_wav(audiopath)
     audioname = audiopath.split('/')[-1]
     audioname = audioname[:-4] + '.mp3'
